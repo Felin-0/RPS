@@ -1,3 +1,6 @@
+let playerScore = 0;
+let computerScore = 0;
+
 function getComputerChoice() { 
     let choice = Math.floor(Math.random() * 3)
 
@@ -22,3 +25,26 @@ function getHumanChoice() {
     }
 }
 console.log(getHumanChoice());
+
+function playRound(playerChoice, computerChoice) {
+    if (playerChoice === computerChoice) {
+        return "It's a tie!";
+    } else if (
+        (playerChoice === "rock" && computerChoice === "scissors") ||
+        (playerChoice === "paper" && computerChoice === "rock") ||
+        (playerChoice === "scissors" && computerChoice === "paper")
+    ) {
+        playerScore++;
+        return `You win! ${playerChoice} beats ${computerChoice}.`;
+    } else {
+        computerScore++;
+        return `You lose! ${computerChoice} beats ${playerChoice}.`;
+    }
+
+}
+
+const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
+const result = playRound(humanSelection, computerSelection);
+console.log(result);
+console.log(`Player Score: ${playerScore}, Computer Score: ${computerScore}`);
