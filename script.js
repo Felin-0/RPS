@@ -1,5 +1,3 @@
-let playerScore = 0;
-let computerScore = 0;
 
 function getComputerChoice() { 
     let choice = Math.floor(Math.random() * 3)
@@ -12,7 +10,7 @@ function getComputerChoice() {
         return "scissors"
     } 
 }
-console.log(getComputerChoice());
+
 
 function getHumanChoice() {
     let choice = prompt("Choose rock, paper, or scissors:").toLowerCase();
@@ -24,9 +22,22 @@ function getHumanChoice() {
         return getHumanChoice();
     }
 }
-console.log(getHumanChoice());
 
-function playRound(playerChoice, computerChoice) {
+/*const humanSelection = getHumanChoice();
+const computerSelection = getComputerChoice();
+const result = playRound(humanSelection, computerSelection);
+console.log(result);
+console.log(`Player Score: ${playerScore}, Computer Score: ${computerScore}`);*/
+
+
+function playGame() {
+    //variables to keep track of scores
+    let playerScore = 0;
+    let computerScore = 0;
+
+    //function to play a single round of the game
+    function playRound(playerChoice, computerChoice) {
+        //compare the choices and determine the winner
     if (playerChoice === computerChoice) {
         return "It's a tie!";
     } else if (
@@ -42,9 +53,14 @@ function playRound(playerChoice, computerChoice) {
     }
 
 }
+    //five rounds of the game
+    for (let i = 0; i < 5; i++) {
+        const humanSelection = getHumanChoice();
+        const computerSelection = getComputerChoice();
+        const result = playRound(humanSelection, computerSelection);
+        console.log(result);
+        console.log(`Player Score: ${playerScore}, Computer Score: ${computerScore}`);
+    }
+}
 
-const humanSelection = getHumanChoice();
-const computerSelection = getComputerChoice();
-const result = playRound(humanSelection, computerSelection);
-console.log(result);
-console.log(`Player Score: ${playerScore}, Computer Score: ${computerScore}`);
+playGame();
